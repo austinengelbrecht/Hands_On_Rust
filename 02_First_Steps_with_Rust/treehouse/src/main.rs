@@ -2,6 +2,11 @@
 
 use std::io::stdin;
 
+struct Visitor {
+    name: String,
+    greeting: String,
+}
+
 fn main() {
     println!("Hello, what's your name?");
 
@@ -17,7 +22,7 @@ fn main() {
     }
 
     if let_them_in {
-        println!("Welcome!");
+        println!("Welcome, to the tree house, {}", name);
     } else {
         println!("Sorry, you're not on the list!");
     }
