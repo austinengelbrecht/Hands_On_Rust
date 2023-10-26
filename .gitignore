@@ -1,0 +1,34 @@
+# Ignore compiled Rust binaries
+target/
+
+# Ignore Cargo.lock file
+Cargo.lock
+
+# Ignore build artifacts
+*.rlib
+*.rmeta
+CMakeLists.txt.user
+target/
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.user
+*.sln
+*.swp
+*.swo
+
+# Ignore generated documentation
+doc/
+target/doc/
+
+# Ignore Mac and Windows system files
+.DS_Store
+Thumbs.db
+
+# Ignore package files
+*.swp
+*.swo
