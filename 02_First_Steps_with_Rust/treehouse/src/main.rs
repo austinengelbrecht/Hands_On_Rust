@@ -7,7 +7,20 @@ fn main() {
 
     let name = what_is_your_name();
 
-    println!("Hello, {}", name);
+    let visitor_list = ["bert", "steve", "fred"];
+    let mut let_them_in = false;
+
+    for visitor in &visitor_list {
+        if visitor == &name {
+            let_them_in = true;
+        }
+    }
+
+    if let_them_in {
+        println!("Welcome!");
+    } else {
+        println!("Sorry, you're not on the list!");
+    }
 }
 
 fn what_is_your_name() -> String {
