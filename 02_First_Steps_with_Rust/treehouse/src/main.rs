@@ -22,15 +22,15 @@ impl Visitor {
 }
 
 fn main() {
+    let mut visitor_list = vec![
+        Visitor::new("bert", "Hey Bert! enjoy the tree house!"),
+        Visitor::new("austin", "Hi Austin! Welcome back!"),
+        Visitor::new("fred", "Wow, who invited fred?"),
+    ];
+
     loop {
         println!("Hello, what's your name?");
         let name = what_is_your_name();
-
-        let mut visitor_list = vec![
-            Visitor::new("bert", "Hey Bert! enjoy the tree house!"),
-            Visitor::new("austin", "Hi Austin! Welcome back!"),
-            Visitor::new("fred", "Wow, who invited fred?"),
-        ];
 
         let known_visitor = visitor_list.iter().find(|visitor| visitor.name == name);
 
@@ -45,9 +45,11 @@ fn main() {
                 }
             }
         }
-
-        println!("Thanks for visiting the tree house!");
     }
+
+    println!("Thanks for visiting the tree house!");
+    println!("Here is the guest list:");
+    println!("{:?}", visitor_list);
 }
 
 fn what_is_your_name() -> String {
