@@ -2,6 +2,7 @@
 
 use std::io::stdin;
 
+#[derive(Debug)]
 struct Visitor {
     name: String,
     greeting: String,
@@ -21,11 +22,14 @@ impl Visitor {
 }
 
 fn main() {
-    println!("Hello, what's your name?");
+    loop {
+        println!("Hello, what's your name?");
+        let name = what_is_your_name();
 
-    let name = what_is_your_name();
+        break;
+    }
 
-    let visitor_list = [
+    let mut visitor_list = vec![
         Visitor::new("bert", "Hey Bert! enjoy the tree house!"),
         Visitor::new("austin", "Hi Austin! Welcome back!"),
         Visitor::new("fred", "Wow, who invited fred?"),
@@ -37,20 +41,6 @@ fn main() {
         Some(visitor) => visitor.greet_visitor(),
         None => println!("You're not on the list. Please leave..."),
     }
-
-    // let mut let_them_in = false;
-
-    // for visitor in &visitor_list {
-    //     if visitor == &name {
-    //         let_them_in = true;
-    //     }
-    // }
-
-    // if let_them_in {
-    //     println!("Welcome, to the tree house, {}", name);
-    // } else {
-    //     println!("Sorry, you're not on the list!");
-    // }
 }
 
 fn what_is_your_name() -> String {
