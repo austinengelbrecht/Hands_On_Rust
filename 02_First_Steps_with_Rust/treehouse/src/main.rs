@@ -26,6 +26,7 @@ fn main() {
         Visitor::new("bert", "Hey Bert! enjoy the tree house!"),
         Visitor::new("austin", "Hi Austin! Welcome back!"),
         Visitor::new("fred", "Wow, who invited fred?"),
+        Visitor::new("steph", "She's cute!"),
     ];
 
     loop {
