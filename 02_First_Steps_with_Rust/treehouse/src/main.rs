@@ -64,9 +64,7 @@ fn main() {
         }
     }
 
-    println!("Thanks for visiting the tree house!");
-    println!("Here is the guest list:");
-    println!("{:?}", visitor_list);
+    closing_words(visitor_list);
 }
 
 fn what_is_your_name() -> String {
@@ -76,4 +74,10 @@ fn what_is_your_name() -> String {
         .expect("Failed to read line");
 
     your_name.trim().to_lowercase()
+}
+
+fn closing_words(visitors: Vec<Visitor>) {
+    println!("Thanks for visiting the tree house!");
+    println!("Here is the guest list:");
+    println!("{:?}", visitors);
 }
