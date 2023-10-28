@@ -5,20 +5,22 @@ use std::io::stdin;
 #[derive(Debug)]
 struct Visitor {
     name: String,
-    greeting: String,
+    action: VisitorAction,
+    age: i8,
 }
 
 impl Visitor {
-    fn new(name: &str, greeting: &str) -> Self {
+    fn new(name: &str, action: VisitorAction, age: i8) -> Self {
         Self {
             name: name.to_lowercase(),
-            greeting: greeting.to_string(),
+            action,
+            age,
         }
     }
 
-    fn greet_visitor(&self) {
-        println!("{}", self.greeting);
-    }
+    // fn greet_visitor(&self) {
+    //     println!("{}", self.greeting);
+    // }
 }
 
 #[derive(Debug)]
@@ -31,10 +33,16 @@ enum VisitorAction {
 
 fn main() {
     let mut visitor_list = vec![
-        Visitor::new("bert", "Hey Bert! enjoy the tree house!"),
-        Visitor::new("austin", "Hi Austin! Welcome back!"),
-        Visitor::new("fred", "Wow, who invited fred?"),
-        Visitor::new("steph", "She's cute!"),
+        Visitor::new("Austin", VisitorAction::Accept, 24),
+        Visitor::new(
+            "Steph",
+            VisitorAction::AcceptWithNote {
+                note: String::from("Is working on her nails."),
+            },
+            24,
+        ),
+        Visitor::new("Aaron", VisitorAction::Refuse, 24),
+        Visitor::new("Luke", VisitorAction::Probation, 25),
     ];
 
     loop {
