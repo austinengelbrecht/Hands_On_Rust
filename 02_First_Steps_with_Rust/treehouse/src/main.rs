@@ -21,6 +21,14 @@ impl Visitor {
     }
 }
 
+#[derive(Debug)]
+enum VisitorAction {
+    Accept,
+    AcceptWithNote { note: String },
+    Refuse,
+    Probation,
+}
+
 fn main() {
     let mut visitor_list = vec![
         Visitor::new("bert", "Hey Bert! enjoy the tree house!"),
