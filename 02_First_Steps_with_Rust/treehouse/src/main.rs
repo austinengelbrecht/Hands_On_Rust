@@ -62,17 +62,17 @@ fn main() {
 
         let known_visitor = visitor_list.iter().find(|visitor| visitor.name == name);
 
-        // match known_visitor {
-        //     Some(visitor) => visitor.greet_visitor(),
-        //     None => {
-        //         if name.is_empty() {
-        //             break;
-        //         } else {
-        //             println!("{}, is not on the visitor list...", name);
-        //             visitor_list.push(Visitor::new(&name, "New Friend!"))
-        //         }
-        //     }
-        // }
+        match known_visitor {
+            Some(visitor) => visitor.greet_visitor(),
+            None => {
+                if name.is_empty() {
+                    break;
+                } else {
+                    println!("{}, is not on the visitor list...", name);
+                    visitor_list.push(Visitor::new(&name, VisitorAction::Probation, 0))
+                }
+            }
+        }
     }
 
     closing_words(visitor_list);
