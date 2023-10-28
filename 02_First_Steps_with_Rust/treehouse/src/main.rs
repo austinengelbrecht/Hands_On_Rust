@@ -2,7 +2,6 @@
 
 use std::io::stdin;
 
-// Add a comment
 #[derive(Debug)]
 struct Visitor {
     name: String,
