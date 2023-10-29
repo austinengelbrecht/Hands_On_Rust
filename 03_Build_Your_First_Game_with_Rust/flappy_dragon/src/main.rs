@@ -1,4 +1,4 @@
-use bracket_lib::{prelude::*, random};
+use bracket_lib::prelude::*;
 
 enum GameMode {
     Menu,
