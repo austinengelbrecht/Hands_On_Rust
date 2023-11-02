@@ -7,6 +7,8 @@ mod prelude {
     pub use crate::map::*;
 }
 
+use prelude::*;
+
 fn main() {
     println!("Hello, world!");
 }
