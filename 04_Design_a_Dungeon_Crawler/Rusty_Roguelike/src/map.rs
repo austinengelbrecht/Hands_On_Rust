@@ -30,14 +30,20 @@ impl Map {
                     TileType::Floor => {
                         ctx.set(
                             x - camera.left_x,
-                            camera.top_y,
+                            y - camera.top_y,
                             YELLOW,
                             BLACK,
                             to_cp437('.'),
                         );
                     }
                     TileType::Wall => {
-                        ctx.set(camera.left_x, camera.top_y, GREEN, BLACK, to_cp437('#'));
+                        ctx.set(
+                            x - camera.left_x,
+                            y - camera.top_y,
+                            GREEN,
+                            BLACK,
+                            to_cp437('#'),
+                        );
                     }
                 }
             }
