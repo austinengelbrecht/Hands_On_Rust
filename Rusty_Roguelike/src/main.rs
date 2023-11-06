@@ -3,7 +3,7 @@
 mod camera;
 mod map;
 mod map_builder;
-mod player;
+// mod player;
 
 mod prelude {
     pub use bracket_lib::prelude::*;
@@ -14,14 +14,17 @@ mod prelude {
     pub use crate::camera::*;
     pub use crate::map::*;
     pub use crate::map_builder::*;
-    pub use crate::player::*;
+    // pub use crate::player::*;
+    pub use legion::systems::CommandBuffer;
+    pub use legion::world::SubWorld;
+    pub use legion::*;
 }
 
 use prelude::*;
 
 struct State {
     map: Map,
-    player: Player,
+    // player: Player,
     camera: Camera,
 }
 
@@ -32,7 +35,7 @@ impl State {
 
         Self {
             map: map_builder.map,
-            player: Player::new(map_builder.player_start),
+            // player: Player::new(map_builder.player_start),
             camera: Camera::new(map_builder.player_start),
         }
     }
@@ -44,9 +47,9 @@ impl GameState for State {
         ctx.cls();
         ctx.set_active_console(1);
         ctx.cls();
-        self.player.update(ctx, &self.map, &mut self.camera);
-        self.map.render(ctx, &self.camera);
-        self.player.render(ctx, &self.camera);
+        // self.player.update(ctx, &self.map, &mut self.camera);
+        // self.map.render(ctx, &self.camera);
+        // self.player.render(ctx, &self.camera);
     }
 }
 
