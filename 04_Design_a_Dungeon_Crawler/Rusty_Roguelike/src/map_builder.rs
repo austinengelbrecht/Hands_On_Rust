@@ -1,5 +1,4 @@
 use crate::prelude::*;
-
 const NUM_ROOMS: usize = 20;
 
 pub struct MapBuilder {
@@ -15,7 +14,6 @@ impl MapBuilder {
             rooms: Vec::new(),
             player_start: Point::zero(),
         };
-
         mb.fill(TileType::Wall);
         mb.build_random_rooms(rng);
         mb.build_corridors(rng);
@@ -50,25 +48,26 @@ impl MapBuilder {
                         let idx = map_idx(p.x, p.y);
                         self.map.tiles[idx] = TileType::Floor;
                     }
-                })
-            }
+                });
 
-            self.rooms.push(room)
-        }
-    }
-
-    fn apply_vertical_tunnel(&mut self, y1: i32, y2: i32, x: i32) {
-        use std::cmp::{max, min};
-        for y in min(y1, y2)..=max(y1, y2) {
-            if let Some(idx) = self.map.try_idx(Point::new(x, y)) {
-                self.map.tiles[idx as usize] = TileType::Floor;
+                self.rooms.push(room)
             }
         }
     }
 
     fn apply_horizontal_tunnel(&mut self, x1: i32, x2: i32, y: i32) {
         use std::cmp::{max, min};
+
         for x in min(x1, x2)..=max(x1, x2) {
+            if let Some(idx) = self.map.try_idx(Point::new(x, y)) {
+                self.map.tiles[idx as usize] = TileType::Floor;
+            }
+        }
+    }
+
+    fn apply_vertical_tunnel(&mut self, y1: i32, y2: i32, x: i32) {
+        use std::cmp::{max, min};
+        for y in min(y1, y2)..=max(y1, y2) {
             if let Some(idx) = self.map.try_idx(Point::new(x, y)) {
                 self.map.tiles[idx as usize] = TileType::Floor;
             }
