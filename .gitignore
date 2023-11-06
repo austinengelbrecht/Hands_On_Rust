@@ -33,5 +33,5 @@ Thumbs.db
 *.swp
 *.swo
 
-#Ignore VSCode Settings 
-.vscode/
+### VSCode Settings
+.vscode/*   
