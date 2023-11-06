@@ -23,9 +23,12 @@ mod prelude {
 use prelude::*;
 
 struct State {
-    map: Map,
+    // map: Map,
     // player: Player,
-    camera: Camera,
+    // camera: Camera,
+    ecs: World,
+    resources: Resources,
+    systems: Schedule,
 }
 
 impl State {
@@ -33,10 +36,19 @@ impl State {
         let mut rng = RandomNumberGenerator::new();
         let map_builder = MapBuilder::new(&mut rng);
 
+        let mut ecs = World::default();
+        let mut resources = Resources::default();
+
+        resources.insert(map_builder.map);
+        resources.insert(Camera::new(map_builder.player_start));
+
         Self {
-            map: map_builder.map,
+            // map: map_builder.map,
             // player: Player::new(map_builder.player_start),
-            camera: Camera::new(map_builder.player_start),
+            // camera: Camera::new(map_builder.player_start),
+            ecs,
+            resources,
+            systems: build_scheduler(),
         }
     }
 }
