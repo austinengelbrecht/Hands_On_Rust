@@ -4,6 +4,7 @@ mod camera;
 mod components;
 mod map;
 mod map_builder;
+mod spawner;
 // mod player;
 
 mod prelude {
@@ -16,6 +17,7 @@ mod prelude {
     pub use crate::components::*;
     pub use crate::map::*;
     pub use crate::map_builder::*;
+    pub use crate::spawner::*;
     pub use legion::systems::CommandBuffer;
     pub use legion::world::SubWorld;
     pub use legion::*;
@@ -35,11 +37,13 @@ struct State {
 
 impl State {
     fn new() -> Self {
+        let mut ecs = World::default();
+        let mut resources = Resources::default();
+
         let mut rng = RandomNumberGenerator::new();
         let map_builder = MapBuilder::new(&mut rng);
 
-        let mut ecs = World::default();
-        let mut resources = Resources::default();
+        spawn_player(&mut ecs, map_builder.player_start);
 
         resources.insert(map_builder.map);
         resources.insert(Camera::new(map_builder.player_start));
