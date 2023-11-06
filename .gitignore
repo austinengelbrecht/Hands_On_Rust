@@ -32,3 +32,6 @@ Thumbs.db
 # Ignore package files
 *.swp
 *.swo
+
+#Ignore VSCode Settings 
+.vscode/
