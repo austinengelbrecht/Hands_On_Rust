@@ -7,8 +7,6 @@ mod map_builder;
 mod spawner;
 mod systems;
 
-// mod player;
-
 mod prelude {
     pub use bracket_lib::prelude::*;
     pub const SCREEN_WIDTH: i32 = 80;
@@ -24,7 +22,6 @@ mod prelude {
     pub use legion::systems::CommandBuffer;
     pub use legion::world::SubWorld;
     pub use legion::*;
-    // pub use crate::player::*;
 }
 
 use prelude::*;
