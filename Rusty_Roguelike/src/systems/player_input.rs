@@ -3,14 +3,14 @@ use crate::prelude::*;
 #[system]
 #[read_component(Point)]
 #[read_component(Player)]
+#[read_component(Enemy)]
 pub fn player_input(
-    ecs: &mut SubWorld,
+    ecs: &SubWorld,
     commands: &mut CommandBuffer,
     #[resource] key: &Option<VirtualKeyCode>,
     #[resource] turn_state: &mut TurnState,
 ) {
     let mut players = <(Entity, &Point)>::query().filter(component::<Player>());
-
     if let Some(key) = *key {
         let delta = match key {
             VirtualKeyCode::Left => Point::new(-1, 0),
@@ -20,7 +20,7 @@ pub fn player_input(
             _ => Point::new(0, 0),
         };
 
-        let (player_entity, desination) = players
+        let (player_entity, destination) = players
             .iter(ecs)
             .find_map(|(entity, pos)| Some((*entity, *pos + delta)))
             .unwrap();
@@ -30,7 +30,7 @@ pub fn player_input(
             let mut hit_something = false;
             enemies
                 .iter(ecs)
-                .filter(|(_, pos)| &&pos == desination)
+                .filter(|(_, pos)| **pos == destination)
                 .for_each(|(entity, _)| {
                     hit_something = true;
 
@@ -51,9 +51,8 @@ pub fn player_input(
                         destination,
                     },
                 ));
-            };
+            }
         }
-
         *turn_state = TurnState::PlayerTurn;
     }
 }

@@ -6,13 +6,17 @@ use crate::prelude::*;
 pub fn combat(ecs: &mut SubWorld, commands: &mut CommandBuffer) {
     let mut attackers = <(Entity, &WantsToAttack)>::query();
 
-    let victims: Vec<(Entity, Entity)> = attackers
+    let victims: Vec<(Entity, Entity)> = attackers // (1)
         .iter(ecs)
-        .map(|(entity, attack)| (*entity, attack.victim))
-        .collect();
+        .map(|(entity, attack)| (*entity, attack.victim)) // (2)
+        .collect(); // (3)
 
     victims.iter().for_each(|(message, victim)| {
-        if let Ok(mut health) = ecs.entry_mut(*victim).unwrap().get_component_mut::<Heath>() {
+        if let Ok(mut health) = ecs
+            .entry_mut(*victim)
+            .unwrap()
+            .get_component_mut::<Health>()
+        {
             println!("Health before attack: {}", health.current);
             health.current -= 1;
             if health.current < 1 {
