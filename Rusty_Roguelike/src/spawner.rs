@@ -56,5 +56,6 @@ pub fn spawn_amulet_of_yala(ecs: &mut World, pos: Point) {
             color: ColorPair::new(WHITE, BLACK),
             glyph: to_cp437('|'),
         },
+        Name("Amulet of Yala".to_string()),
     ));
 }
