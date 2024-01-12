@@ -189,5 +189,5 @@ fn main() -> BError {
         .with_simple_console_no_bg(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, "terminal8x8.png")
         .build()?;
 
-    main_loop(context, State::new())
+    main_loop(context, State::new());
 }
